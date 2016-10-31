@@ -241,124 +241,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/25/catch_music1/" itemprop="url">
-                  记录第一次扒歌
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-25T20:52:28+08:00" content="2016-10-25">
-              2016-10-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我从小就是个音乐爱好者，小学就拿着收音机一遍一遍听着任贤齐，初中开始听各种摇滚乐，但可能父母也没有发掘我的这份天赋，导致我从来都没有正规学习过乐理知识。</p>
-<p>大致在我十七八岁的时候，和一群小伙伴踏上了追求摇滚梦想的道路，可能因为当时大家都觉得吉他比较帅所以没人打鼓，我反而觉得鼓手更帅所以我选择做鼓手。</p>
-<p>但我一直特别喜欢电吉他插上失真效果器后那种躁躁的和弦声，后来生活条件好了，我凑齐了一套装备，后来就发生了扒歌的故事。</p>
-<p>从一个女生了解到有一种音乐叫后摇，我起初听了之后没有任何感觉，后来渐渐喜欢上这个女生，渐渐喜欢上她喜欢的音乐，有一支乐队叫甜梅号，如果不认识她，可能连智能推荐都不会给我推荐到这支乐队，如果不认识她，可能我不会听一首叫《黄昏鹿场》的歌几十遍。</p>
-<p>到现在我也没有时间去学习乐理，甚至不知道吉他上do re mi在哪儿，但可能因为简单得玩过音乐、听过那么多歌，扒这首曲子对我来说居然不是太费劲，可能总共用了2、3个小时，就扒出了50个小节左右，我不是很了解2 3个小时算是什么水平，但对我来说成就感还是不小的。现在喜欢隔段时间总结一下，所以也是我决定写博客的原因，因为从来没做过，尝试了才发现自己可能有这方面天赋，所以鼓励大家去尝试新鲜事物，或许没有什么卵用，但成就感这东西，年纪越大可能就会越少。</p>
-<p>（有机会把谱贴上来）</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/25/think_hybrid/" itemprop="url">
                   Android Hybrid方案
                 </a>
@@ -431,6 +313,10 @@
 <p>团队中已调研出文件流级别的增量更新，采用的是xxx方案， 但由于会使用到c代码 编译出的so有50K左右，50K在乘客端已经算是很大的代价了，所以再乘客端不考虑使用此方案，此方案后续希望在验车端的[ReactNative]中采用。</p>
 <p>以上方案确实比较麻烦 也需要经过严密测试才敢上线，但我仍然觉得一次更新就下载几百k的包实在有些暴力，我眼中的合理方案可能是服务端的“检查h5版本号”接口应该有类似SVN的功能，拿本地版本号请求时能比对出版本差异，返回差异文件、删除文件。这样可能逻辑稍复杂，但可避免修改一个文案，用户就需要消耗几百k流量的情况。</p>
 </blockquote>
+<h2 id="页面跳转后的js-Callback方案"><a href="#页面跳转后的js-Callback方案" class="headerlink" title="页面跳转后的js Callback方案"></a>页面跳转后的js Callback方案</h2><p>web页面可能跳出到新的WebView加载，所以存在回传参数的需求，如选择优惠券页面需要把用户选择的优惠券回传给调用方。这里记录的场景的发起方必然是H5页面，目标页面可能是H5也可能是Native。</p>
+<ul>
+<li>html中的链接加入callback参数，并设定一个函数名用于被返回时调用，WebView拦截到url中有callback字段后解析出方法名，通过webView.loadUrl(“javascript:callback({data})”)方式回调js函数。</li>
+</ul>
 <h6 id="待更新落实方案代码"><a href="#待更新落实方案代码" class="headerlink" title="(待更新落实方案代码)"></a>(待更新落实方案代码)</h6>
           
         
@@ -639,7 +525,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -647,7 +533,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -656,7 +542,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

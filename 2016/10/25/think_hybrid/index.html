@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Hexo_xyj">
 <meta property="og:description" content="由于缩减apk包体积大小的需求，海浪部分native页面需要切换成h5页面，以及海外zuche项目，需要出一个Hybrid方案来尽量减少替换成h5页面后带来的体验流失。
 缓存方案据统计当前所有页面包括html css js打包压缩后为600KB左右，可以一次性下载所有文件，预计进入业务线tab开始下载，并解压到应用的cache目录，把应用cache目录中的hybrid文件夹作为html根目录，所有">
-<meta property="og:updated_time" content="2016-10-25T12:20:53.000Z">
+<meta property="og:updated_time" content="2016-10-26T08:01:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Hybrid方案">
 <meta name="twitter:description" content="由于缩减apk包体积大小的需求，海浪部分native页面需要切换成h5页面，以及海外zuche项目，需要出一个Hybrid方案来尽量减少替换成h5页面后带来的体验流失。
@@ -310,6 +310,10 @@
 <p>团队中已调研出文件流级别的增量更新，采用的是xxx方案， 但由于会使用到c代码 编译出的so有50K左右，50K在乘客端已经算是很大的代价了，所以再乘客端不考虑使用此方案，此方案后续希望在验车端的[ReactNative]中采用。</p>
 <p>以上方案确实比较麻烦 也需要经过严密测试才敢上线，但我仍然觉得一次更新就下载几百k的包实在有些暴力，我眼中的合理方案可能是服务端的“检查h5版本号”接口应该有类似SVN的功能，拿本地版本号请求时能比对出版本差异，返回差异文件、删除文件。这样可能逻辑稍复杂，但可避免修改一个文案，用户就需要消耗几百k流量的情况。</p>
 </blockquote>
+<h2 id="页面跳转后的js-Callback方案"><a href="#页面跳转后的js-Callback方案" class="headerlink" title="页面跳转后的js Callback方案"></a>页面跳转后的js Callback方案</h2><p>web页面可能跳出到新的WebView加载，所以存在回传参数的需求，如选择优惠券页面需要把用户选择的优惠券回传给调用方。这里记录的场景的发起方必然是H5页面，目标页面可能是H5也可能是Native。</p>
+<ul>
+<li>html中的链接加入callback参数，并设定一个函数名用于被返回时调用，WebView拦截到url中有callback字段后解析出方法名，通过webView.loadUrl(“javascript:callback({data})”)方式回调js函数。</li>
+</ul>
 <h6 id="待更新落实方案代码"><a href="#待更新落实方案代码" class="headerlink" title="(待更新落实方案代码)"></a>(待更新落实方案代码)</h6>
       
     </div>
@@ -350,10 +354,6 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/25/catch_music1/" rel="prev" title="记录第一次扒歌">
-                记录第一次扒歌 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,7 +421,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -429,7 +429,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -438,7 +438,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -467,7 +467,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存方案"><span class="nav-number">1.</span> <span class="nav-text">缓存方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView-加载方案"><span class="nav-number">2.</span> <span class="nav-text">WebView 加载方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本更新方案"><span class="nav-number">3.</span> <span class="nav-text">版本更新方案</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#待更新落实方案代码"><span class="nav-number">3.0.0.0.1.</span> <span class="nav-text">(待更新落实方案代码)</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存方案"><span class="nav-number">1.</span> <span class="nav-text">缓存方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView-加载方案"><span class="nav-number">2.</span> <span class="nav-text">WebView 加载方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本更新方案"><span class="nav-number">3.</span> <span class="nav-text">版本更新方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面跳转后的js-Callback方案"><span class="nav-number">4.</span> <span class="nav-text">页面跳转后的js Callback方案</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#待更新落实方案代码"><span class="nav-number">4.0.0.0.1.</span> <span class="nav-text">(待更新落实方案代码)</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
